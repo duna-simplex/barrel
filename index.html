@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding-top: 50px; /* space for the header */
+  background-color: #000; /* black background */
+}
+
+header {
+  background-color: #333; /* lighter black for header */
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3; /* higher z-index to stay on top */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.score {
+  position: relative;
+  font-size: 20px;
+}
+
+.score .plus {
+  cursor: pointer;
+  font-size: 24px;
+  margin-left: 5px;
+}
+
+/* Style the side navigation menu */
+.sidenav {
+  height: calc(100% - 50px);
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  top: 50px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Menu content */
+.sidenav a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 22px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.burger {
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+/* Transform burger to X */
+.burger.toggle {
+  transform: rotate(45deg);
+}
+
+.main {
+  padding: 16px;
+  background: #000; /* black background for main content */
+  min-height: 100vh;
+  color: #fff; /* white text for readability */
+}
+
+@media screen and (max-height: 450px) {
+  body {
+    padding-top: 70px; /* Increase padding to avoid header overlap */
+  }
+  header {
+    height: 70px; /* Increased header height for smaller screens */
+  }
+  .sidenav {
+    top: 70px; /* Adjust top position to match increased header height */
+  }
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <span class="burger" onclick="toggleNav()">&#9776;</span>
+  <h1>LOGO</h1>
+  <div class="score">999 <span class="plus" onclick="alert('Buy more points!')">+</span></div>
+</header>
+
+<div id="mySidenav" class="sidenav">
+  <a href="#" onclick="showPage('Play')">Play</a>
+  <a href="#" onclick="showPage('Profile')">Profile</a>
+  <a href="#" onclick="showPage('Leaderboard')">Leaderboard</a>
+  <a href="#" onclick="showPage('Buy $BARREL')">Buy $BARREL</a>
+  <a href="#" onclick="showPage('Redeem $BARREL')">Redeem $BARREL</a>
+  <a href="#" onclick="showPage('FAQ')">FAQ</a>
+  <a href="#" onclick="showPage('Terms of use')">Terms of use</a>
+  <a href="#" onclick="showPage('Privacy policy')">Privacy policy</a>
+  <a href="#" onclick="showPage('Sign out')">Sign out</a>
+</div>
+
+<div class="main">
+  <div id="content" style="margin-top: 20px;"></div>
+</div>
+
+<script>
+function toggleNav() {
+  var nav = document.getElementById("mySidenav");
+  var burger = document.querySelector('.burger');
+  if (nav.style.display === "none" || nav.style.display === "") {
+    nav.style.display = "flex";
+    burger.classList.add('toggle');
+  } else {
+    nav.style.display = "none";
+    burger.classList.remove('toggle');
+  }
+}
+
+function showPage(title) {
+  document.getElementById("content").innerHTML = '<h1>' + title + '</h1>';
+  toggleNav();
+}
+</script>
+
+</body>
+</html>
